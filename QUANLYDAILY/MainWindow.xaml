@@ -1,0 +1,68 @@
+﻿<Window x:Class="QUANLYDAILY.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QUANLYDAILY"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="1000">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Khu vực thêm/sửa đại lý -->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+            <Label Content="Tên:" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtTen" Width="100" Margin="5,0"/>
+
+            <Label Content="ĐT:" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtDienThoai" Width="100" Margin="5,0"/>
+
+            <Label Content="Địa Chỉ:" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtDiaChi" Width="100" Margin="5,0"/>
+
+            <Label Content="Email:" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtEmail" Width="100" Margin="5,0"/>
+
+            <Label Content="Ngày TN:" VerticalAlignment="Center"/>
+            <DatePicker x:Name="dpNgayTiepNhan" Width="100" Margin="5,0"/>
+
+            <Label Content="Loại ĐL:" VerticalAlignment="Center"/>
+            <ComboBox x:Name="cbLoaiDaiLy" Width="50" Margin="5,0"
+                  DisplayMemberPath="TenLoaiDaiLy"
+                  SelectedValuePath="MaLoaiDaiLy"/>
+
+            <Label Content="Quận:" VerticalAlignment="Center"/>
+            <ComboBox x:Name="cbQuan" Width="50" Margin="5,0"
+                  DisplayMemberPath="TenQuan"
+                  SelectedValuePath="MaQuan"/>
+
+
+        </StackPanel>
+
+        <!-- DataGrid hiển thị danh sách đại lý -->
+        <DataGrid x:Name="dgDaiLy" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" 
+              SelectionMode="Single" SelectionUnit="FullRow" SelectionChanged="dgDaiLy_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Mã ĐL" Binding="{Binding MaDaiLy}" Width="Auto"/>
+                <DataGridTextColumn Header="Tên ĐL" Binding="{Binding Ten}" Width="*"/>
+                <DataGridTextColumn Header="ĐT" Binding="{Binding DienThoai}" Width="Auto"/>
+                <DataGridTextColumn Header="Địa Chỉ" Binding="{Binding DiaChi}" Width="*"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
+                <DataGridTextColumn Header="Ngày TN" Binding="{Binding NgayTiepNhan}" Width="*"/>
+                <DataGridTextColumn Header="Loại ĐL" Binding="{Binding MaLoaiDaiLy}" Width="Auto"/>
+                <DataGridTextColumn Header="Quận" Binding="{Binding MaQuan}" Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Nút sửa, xoá -->
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right">
+            <Button Content="Sửa" Width="80" Margin="0,0,10,0" Click="btnSua_Click"/>
+            <Button Content="Xoá" Width="80" Click="btnXoa_Click"/>
+            <Button Content="Thêm" Width="80" Margin="10,0,0,0" Click="btnThem_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
